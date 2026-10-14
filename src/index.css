@@ -1,0 +1,241 @@
+/**
+ * Theme guard CSS - applied before React mounts
+ * Prevents background flash by setting correct theme color before hydration
+ * Inline script sets data-theme-mode attribute from localStorage
+ */
+/* Must track background.default in DefaultColors.tsx — these paint before
+   the theme exists, so a mismatch shows as a flash on first load. */
+html {
+  background: #1C1B18; /* dark mode default */
+}
+
+html[data-theme-mode="light"] {
+  background: #FAFAF9;
+}
+
+html, body, #root {
+  background: inherit;
+}
+
+/*
+ * Minimal global styles for MUI compatibility
+ * Let MUI theme handle all styling - no conflicting overrides
+ */
+
+/* Basic browser resets - let MUI CssBaseline handle the rest */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove default body styling to let MUI control everything */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll globally */
+}
+
+/* Ensure root container doesn't constrain layout or allow overflow */
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scroll/drag */
+}
+
+/*
+ * Brand mark colour system
+ *
+ * plan-make-trace-mark.svg draws entirely in currentColor, so every treatment
+ * below is a `color` change and nothing else. Retint a treatment by overriding
+ * one variable — never by editing the SVG or adding another coloured asset.
+ */
+:root {
+  --pmt-logo-brand: #009EBE;
+  --pmt-logo-reversed: #FFFFFF;
+  --pmt-logo-mono: #171713;
+
+  /* Line weight of the mark's strokes, in the SVG's own user units (the
+     viewBox is 690 across). Original artwork weight was 38.4. */
+  --pmt-logo-stroke-width: 46;
+
+  /* Hero / app-icon tile. Identical to the landing page's feature and
+     checklist icon tiles, which are alpha(primary.main, 0.12) — a blue-grey
+     tint, not a tint of the mark. Dark mode primary.main is #5C84B8; the
+     light-mode value is set below. Flat, no shadow, same as those tiles. */
+  --pmt-logo-tile-bg: rgba(92, 132, 184, 0.12);
+  --pmt-logo-tile-fg: var(--pmt-logo-brand);
+  --pmt-logo-tile-radius: 22%;
+  --pmt-logo-tile-shadow: none;
+  --pmt-logo-tile-mark-size: 83%;
+  /* The mark's visual mass sits left (heavy bar) against a small node on the
+     right, so geometric centring reads as off-centre. Nudge, don't redraw. */
+  --pmt-logo-tile-mark-shift-x: 2%;
+
+  /* Animated glow on the mark. Drifts from the brand teal toward violet and
+     back — deliberately near the threshold of perception. Raise the alphas or
+     the blur to make it read more strongly. */
+  --pmt-logo-glow-base: rgba(0, 158, 190, 0.28);
+  --pmt-logo-glow-drift: rgba(124, 92, 214, 0.40);
+  --pmt-logo-glow-blur: 5px;
+  --pmt-logo-glow-duration: 7s;
+}
+
+/* Light mode primary.main is #355F97 — same 12% tint as the icon tiles there. */
+html[data-theme-mode="light"] {
+  --pmt-logo-tile-bg: rgba(53, 95, 151, 0.12);
+}
+
+.pmt-logo {
+  display: block;
+  width: auto;
+  color: var(--pmt-logo-color, var(--pmt-logo-brand));
+  /* Inherited by the stroked paths, which declare no width of their own. */
+  stroke-width: var(--pmt-logo-stroke-width, 38.4);
+}
+
+.pmt-logo--reversed {
+  --pmt-logo-color: var(--pmt-logo-reversed);
+}
+
+.pmt-logo--mono {
+  --pmt-logo-color: var(--pmt-logo-mono);
+}
+
+/* Takes colour from whatever the mark is placed inside.
+   Sets `color` directly rather than the variable — `inherit` on a custom
+   property inherits the variable itself, which is undefined on ancestors and
+   would silently fall back to the brand colour. */
+.pmt-logo--inherit {
+  color: inherit;
+}
+
+.pmt-logo-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  background: var(--pmt-logo-tile-bg);
+  border-radius: var(--pmt-logo-tile-radius);
+  box-shadow: var(--pmt-logo-tile-shadow);
+  color: var(--pmt-logo-tile-fg);
+}
+
+/* Square, so the mark scales proportionally and stays optically centred —
+   the SVG viewBox is already centred on the artwork with even padding. */
+.pmt-logo-tile__mark {
+  width: var(--pmt-logo-tile-mark-size);
+  height: var(--pmt-logo-tile-mark-size);
+  transform: translateX(var(--pmt-logo-tile-mark-shift-x, 0));
+  animation: pmt-logo-glow var(--pmt-logo-glow-duration) ease-in-out infinite;
+}
+
+/* drop-shadow follows the mark's own strokes rather than boxing the tile, so
+   the glow traces the artwork. */
+@keyframes pmt-logo-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 var(--pmt-logo-glow-blur) var(--pmt-logo-glow-base));
+  }
+  50% {
+    filter: drop-shadow(0 0 calc(var(--pmt-logo-glow-blur) * 1.5) var(--pmt-logo-glow-drift));
+  }
+}
+
+/* Hold a static glow rather than pulsing for anyone who has asked for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  .pmt-logo-tile__mark {
+    animation: none;
+    filter: drop-shadow(0 0 var(--pmt-logo-glow-blur) var(--pmt-logo-glow-base));
+  }
+}
+
+/* ── Realtime trace ─────────────────────────────────────────────────────────
+   Marks a visual region a realtime event just changed. Applied as a class to
+   the region's own element — a card, a table container, a row — so there is no
+   wrapper element to alter that element's layout or sizing contract.
+
+   The colour is set by the theme on :root; only the motion lives here. */
+
+:root {
+  --realtime-trace-width: 2px;
+  --realtime-trace-duration: 600ms;
+  --realtime-trace-hold-duration: 500ms;
+}
+
+/* A custom property has to be registered as an angle to be animatable at all.
+   Unregistered, the engine treats it as a string and the sweep jumps to its end
+   value instead of travelling. */
+@property --realtime-trace-sweep {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.realtime-trace {
+  position: relative;
+}
+
+/* A ring masked out of a conic sweep, so the colour grows clockwise from the
+   top edge. Inset rather than straddling the border: a card clips its own
+   overflow, and a centred stroke would lose its outer half. */
+.realtime-trace::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--realtime-trace-width);
+  background: conic-gradient(
+    from -90deg,
+    var(--realtime-trace-colour) var(--realtime-trace-sweep),
+    transparent var(--realtime-trace-sweep)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: realtime-trace var(--realtime-trace-duration) ease-in-out forwards;
+}
+
+@keyframes realtime-trace {
+  0% {
+    --realtime-trace-sweep: 0deg;
+    opacity: 1;
+  }
+  72% {
+    --realtime-trace-sweep: 360deg;
+    opacity: 1;
+  }
+  100% {
+    --realtime-trace-sweep: 360deg;
+    opacity: 0;
+  }
+}
+
+/* Hold the completed ring briefly for anyone who has asked for less motion,
+   rather than travelling a stroke around the region. */
+@media (prefers-reduced-motion: reduce) {
+  .realtime-trace::after {
+    --realtime-trace-sweep: 360deg;
+    animation: realtime-trace-hold var(--realtime-trace-hold-duration) linear forwards;
+  }
+}
+
+@keyframes realtime-trace-hold {
+  0%,
+  65% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* High quality font rendering */
+body, input, button, textarea, select {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

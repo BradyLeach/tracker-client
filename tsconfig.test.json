@@ -1,0 +1,33 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "target": "ES2022",
+        "lib": [ "ES2022", "DOM", "DOM.Iterable" ],
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "skipLibCheck": true,
+        "strict": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "types": [ "vitest/globals", "@testing-library/jest-dom" ],
+        "paths": {
+            "@/*": [ "src/*" ],
+            "@/assets/*": [ "src/assets/*" ],
+            "@/components/*": [ "src/components/*" ],
+            "@/config/*": [ "src/config/*" ],
+            "@/context/*": [ "src/context/*" ],
+            "@/core/*": [ "src/core/*" ],
+            "@/domains/*": [ "src/domains/*" ],
+            "@/hooks/*": [ "src/hooks/*" ],
+            "@/providers/*": [ "src/providers/*" ],
+            "@/services/*": [ "src/services/*" ],
+            "@/utils/*": [ "src/utils/*" ],
+            "@/test-factories/*": [ "tests/factories/*" ]
+        }
+    },
+    "include": [
+        "src/**/*",
+        "tests/**/*"
+    ],
+    "typeRoots": [ "./node_modules/@types", "./tests/types" ]
+}

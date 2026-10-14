@@ -1,0 +1,86 @@
+{
+    "folders": [
+        {
+            "path": ".."
+        }
+    ],
+    "settings": {
+
+        //<-------------------------------------------------------------------->
+        // <----->  ESLINT CONFIGURATION                    <------------------>
+        //<-------------------------------------------------------------------->
+        "eslint.format.enable": true,
+        "eslint.lintTask.enable": true,
+
+        //<-------------------------------------------------------------------->
+        // <----->  VS EDITOR SETTINGS                    <------------------>
+        //<-------------------------------------------------------------------->
+        "typescript.preferences.includePackageJsonAutoImports": "on",
+        "typescript.suggest.autoImports": true,
+        "typescript.preferences.importModuleSpecifier": "non-relative",
+
+        //<-------------------------------------------------------------------->
+        // <----->  EXPLORER SETTINGS              v        <------------------>
+        //<-------------------------------------------------------------------->
+        "explorer.compactFolders": false,
+        "explorer.autoReveal": false,
+
+        //<-------------------------------------------------------------------->
+        // <----->  FORMATTER SETTINGS                      <------------------>
+        //<-------------------------------------------------------------------->
+
+
+        "editor.renderControlCharacters": true,
+        "editor.rulers": [ 80, 128 ],
+        "editor.renderWhitespace": "all",
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "files.trimTrailingWhitespace": true,
+
+        // ESLint --fix is the ONLY thing that touches ts/tsx on save.
+        // Do not add a language-specific defaultFormatter for typescript or
+        // typescriptreact — the built-in TS formatter fights brace-style/space-in-parens.
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit"
+        },
+        "editor.formatOnSave": false,
+
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "[json]": {
+            "editor.defaultFormatter": "vscode.json-language-features"
+        },
+        "[jsonc]": {
+            "editor.defaultFormatter": "vscode.json-language-features"
+        },
+
+        "eslint.validate": [
+            "javascript",
+            "typescript",
+            "typescriptreact"
+        ],
+
+        "typescript.updateImportsOnFileMove.enabled": "always",
+
+        //<-------------------------------------------------------------------->
+        // <----->  UI SETTINGS                             <------------------>
+        //<-------------------------------------------------------------------->
+        "editor.suggest.showIcons": true,
+        "svg.preview.background": "transparent",
+        "cSpell.words": [
+            "baselight",
+            "batchid",
+            "Customizer",
+            "darkshadows",
+            "dialogs",
+            "hydrator",
+            "Swipeable",
+            "tabler",
+            "topbar",
+            "traceability"
+        ],
+
+        "diffEditor.useInlineMode": true
+
+    }
+}

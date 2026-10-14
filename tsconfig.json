@@ -1,0 +1,26 @@
+{
+    "files": [ ],
+    "types": [ "node", "vite/client" ],
+    "references": [
+        { "path": "./tsconfig.app.json" },
+        { "path": "./tsconfig.node.json" },
+        { "path": "./tsconfig.test.json" }
+    ],
+    "compilerOptions": {
+        "ignoreDeprecations": "5.0",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [ "src/*" ],
+            "@/assets/*": [ "public/assets/*" ],
+            "@/components/*": [ "src/components/*" ],
+            "@/config/*": [ "src/config/*" ],
+            "@/context/*": [ "src/context/*" ],
+            "@/core/*": [ "src/core/*" ],
+            "@/domains/*": [ "src/domains/*" ],
+            "@/hooks/*": [ "src/hooks/*" ],
+            "@/providers/*": [ "src/providers/*" ],
+            "@/services/*": [ "src/services/*" ],
+            "@/utils/*": [ "src/utils/*" ]
+        }
+    }
+}

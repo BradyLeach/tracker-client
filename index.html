@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/public/assets/svg/pmt-logo-favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tracker</title>
+    <script>
+      /**
+       * Restore theme from localStorage before React mounts
+       * Sets data-theme-mode attribute to trigger CSS guard rules
+       * Prevents flash by applying correct background before hydration
+       */
+      (function() {
+        try {
+          const mode = localStorage.getItem('trk:theme:mode');
+          const dir = localStorage.getItem('trk:theme:direction');
+
+          if (mode) {
+            document.documentElement.setAttribute('data-theme-mode', JSON.parse(mode));
+          }
+
+          if (dir) {
+            document.documentElement.dir = JSON.parse(dir);
+          }
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

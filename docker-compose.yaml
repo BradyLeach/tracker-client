@@ -1,0 +1,34 @@
+services:
+  frontend:
+    build: .
+    container_name: trkc_frontend
+    ports:
+      - "5175:5175"
+    volumes:
+      - .:/usr/src/app
+      - trkc_node_modules:/usr/src/app/node_modules
+    working_dir: /usr/src/app
+    command: npm run dev -- --host 0.0.0.0
+    networks:
+      - app
+
+  frontend-prod:
+    build: .
+    container_name: trkc_frontend_prod
+    ports:
+      - "4175:4175"
+    volumes:
+      - .:/usr/src/app
+      - trkc_node_modules:/usr/src/app/node_modules
+    working_dir: /usr/src/app
+    command: sh -c "npm run build && npm run preview"
+    networks:
+      - app
+
+networks:
+  app:
+    external: true
+    name: tracker-network
+
+volumes:
+  trkc_node_modules:

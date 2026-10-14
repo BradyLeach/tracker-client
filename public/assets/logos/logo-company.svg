@@ -1,0 +1,10 @@
+<svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Softened dark background -->
+    <rect width="140" height="140" rx="24" fill="#132b55" />
+    <!-- Vertical bar: bold, slightly rounded -->
+    <rect x="38" y="32" width="24" height="76" rx="9" fill="#4DD599" />
+    <!-- Top arm: forward, slightly rounded polygon -->
+    <rect x="62" y="32" width="50" height="22" rx="8" transform="skewX(-14)" fill="#68A0FF" />
+    <!-- Middle arm: forward, slightly rounded polygon -->
+    <rect x="62" y="64" width="42" height="20" rx="8" transform="skewX(-12)" fill="#B46CF5" />
+</svg>
