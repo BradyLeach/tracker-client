@@ -126,7 +126,9 @@ const calculators = {
         atMost: "At most",
         pass: "Pass",
         fail: "Fail",
-        inconclusive: "Inconclusive"
+        inconclusive: "Inconclusive",
+        yes: "Yes",
+        no: "No"
     }
 } as const;
 

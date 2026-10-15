@@ -19,3 +19,8 @@ export { calculatorService } from './services/calculator.service';
 export { useCalculators } from './hooks/useCalculators';
 export { useRunCalculator } from './hooks/useRunCalculator';
 export { formatScaledValue } from './utils/formatScaledValue';
+export { CalculatorRunner } from './components/CalculatorRunner';
+export type { CalculatorRunnerProps } from './components/CalculatorRunner';
+
+// Pages
+export { PageCalculators } from './pages/PageCalculators';

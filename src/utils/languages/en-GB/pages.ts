@@ -397,6 +397,10 @@ const pages =
         {
             title: "Calculators",
             description: "Every built-in marketing calculator, standalone",
+            searchPlaceholder: "Search calculators",
+            category: "Category",
+            noMatches: "No calculator matches.",
+            inputs: "Inputs",
             runButton: "Calculate",
             result: "Result",
             unknown: "Cannot be known from these inputs."
