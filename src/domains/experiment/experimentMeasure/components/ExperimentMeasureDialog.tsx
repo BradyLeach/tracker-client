@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, Button, Dialog, MenuItem, Select, Typography } from '@/components/ui';
 import { FormScaffold } from '@/components/forms/scaffold/FormScaffold';
 import { BaseFormRenderer } from '@/components/forms/renderers/BaseFormRenderer';
+import { formatApiError } from '@/core/utils';
 import { useCalculators } from '@/domains/calculator';
 import { useFormulas, useMetrics } from '@/domains/metric';
 import { useCreateExperimentMeasure } from '../hooks/useCreateExperimentMeasure';
@@ -155,7 +156,7 @@ export function ExperimentMeasureDialog( { open, onClose, experimentId, measure 
             }
         >
             <FormScaffold>
-                <FormScaffold.Feedback message={mutation.error ? t( mutation.error.key ) : undefined} />
+                <FormScaffold.Feedback message={mutation.error ? formatApiError( t, mutation.error ) : undefined} />
                 <FormScaffold.Message>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                         <Box>

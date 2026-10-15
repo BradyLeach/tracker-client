@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Dialog } from '@/components/ui';
 import { FormScaffold } from '@/components/forms/scaffold/FormScaffold';
 import { BaseFormRenderer } from '@/components/forms/renderers/BaseFormRenderer';
+import { formatApiError } from '@/core/utils';
 import { useConcludeExperiment } from '../hooks/useConcludeExperiment';
 import { buildConclusionFormConfig } from '../config/buildConclusionFormConfig';
 import type { Experiment, ExperimentDecision } from '../types/experiment.types';
@@ -80,7 +81,7 @@ export function ConcludeExperimentDialog( { open, onClose, experiment, onConclud
             }
         >
             <FormScaffold>
-                <FormScaffold.Feedback message={conclude.error ? t( conclude.error.key ) : undefined} />
+                <FormScaffold.Feedback message={conclude.error ? formatApiError( t, conclude.error ) : undefined} />
                 <FormScaffold.Body>
                     <BaseFormRenderer
                         key={formKey}

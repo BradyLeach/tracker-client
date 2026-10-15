@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, Button, Dialog } from '@/components/ui';
 import { FormScaffold } from '@/components/forms/scaffold/FormScaffold';
 import { BaseFormRenderer } from '@/components/forms/renderers/BaseFormRenderer';
+import { formatApiError } from '@/core/utils';
 import { useMeasurementSources } from '@/domains/measurement';
 import { useCreateExperimentVariant } from '../hooks/useCreateExperimentVariant';
 import { useUpdateExperimentVariant } from '../hooks/useUpdateExperimentVariant';
@@ -104,7 +105,7 @@ export function ExperimentVariantDialog( { open, onClose, experimentId, variant 
             }
         >
             <FormScaffold>
-                <FormScaffold.Feedback message={mutation.error ? t( mutation.error.key ) : undefined} />
+                <FormScaffold.Feedback message={mutation.error ? formatApiError( t, mutation.error ) : undefined} />
                 <FormScaffold.Body>
                     <BaseFormRenderer
                         key={formKey}
