@@ -326,6 +326,11 @@ const pages =
             {
                 headline: "No formulas yet",
                 subtext: "Combine metrics with + - * / and min, max, abs."
+            },
+            deleteConfirm:
+            {
+                title: "Delete?",
+                body: "{{name}} will be permanently deleted. Experiments measuring it will stop resolving it."
             }
         },
         sources:

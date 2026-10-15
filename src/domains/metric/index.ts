@@ -26,6 +26,9 @@ export {
 } from './metric';
 export type { DimensionFilterEditorProps } from './metric';
 
+// Pages
+export { PageMetrics } from './pages/PageMetrics';
+
 // Formula
 export type {
     Formula,
