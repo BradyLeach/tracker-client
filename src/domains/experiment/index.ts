@@ -81,3 +81,4 @@ export {
 
 // Pages
 export { PageExperiments } from './pages/PageExperiments';
+export { PageExperiment } from './pages/PageExperiment';

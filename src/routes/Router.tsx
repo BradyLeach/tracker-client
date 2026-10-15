@@ -15,6 +15,7 @@ const PageAccount = lazy( () => import( '@/domains/account' ).then( module => ( 
 const PageHome = lazy( () => import( '@/domains/dashboards' ).then( module => ( { default: module.PageHome } ) ) );
 const PageCompanies = lazy( () => import( '@/domains/business' ).then( module => ( { default: module.PageCompanies } ) ) );
 const PageExperiments = lazy( () => import( '@/domains/experiment' ).then( module => ( { default: module.PageExperiments } ) ) );
+const PageExperiment = lazy( () => import( '@/domains/experiment' ).then( module => ( { default: module.PageExperiment } ) ) );
 
 // Get the runtime environment for the config helper
 const { environment, features } = getConfig();
@@ -72,6 +73,7 @@ export const router = createBrowserRouter( [
                     { path: "/partnerships/trash", element: <PageCompaniesTrash /> },
                     { path: "/partnerships/:companyId", element: <PageCompanyProfile /> },
                     { path: "/experiments", element: <PageExperiments /> },
+                    { path: "/experiments/:experimentId", element: <PageExperiment /> },
                 ]
             },
 

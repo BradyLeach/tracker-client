@@ -28,6 +28,19 @@ import type { Experiment } from '../types/experiment.types';
 
 const STATUS_GROUP = 'status';
 
+/** Where an experiment is in its life. Each phase allows different actions. */
+export type ExperimentPhase = 'draft' | 'running' | 'concluded' | 'abandoned';
+
+/**
+ * The experiment's phase, read from its current state's stable label. Undefined until
+ * the state registry resolves the state, so a page offers no action it cannot justify.
+ */
+export function experimentPhase( experiment: Experiment ): ExperimentPhase | undefined
+{
+    const label = stateRegistry.getState( experiment.currentStateGraphStateId ?? '' )?.label;
+    return label === 'draft' || label === 'running' || label === 'concluded' || label === 'abandoned' ? label : undefined;
+}
+
 /** The translated name of an experiment's current state, or undefined before the registry resolves it. */
 export function experimentStatusLabel( experiment: Experiment ): string | undefined
 {

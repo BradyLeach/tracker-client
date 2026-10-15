@@ -205,6 +205,9 @@ const pages =
             title: "Experiment",
             description: "Design, results and conclusion of one experiment",
             overview: "Experiment",
+            notFound: "Experiment not found",
+            notFoundSubtext: "It may have been deleted, or the link is wrong.",
+            backToCollection: "Back to experiments",
             section:
             {
                 design: "Design",
