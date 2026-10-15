@@ -15,6 +15,7 @@ import collection from './collection';
 import comment from './comment';
 import richText from './richText';
 import icons from './icons';
+import calculators from './calculators';
 
 const en = {
     pages,
@@ -34,6 +35,7 @@ const en = {
     comment,
     richText,
     icons,
+    calculators,
 } as const;
 
 export default en;

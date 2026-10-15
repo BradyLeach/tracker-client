@@ -1,0 +1,133 @@
+/**
+ * Calculator Translations
+ *
+ * Keyed by the calculator registry's keys, categories, input keys and units — the
+ * backend/frontend contract the registry defines. Names only; the server owns the maths.
+ */
+const calculators = {
+    categories:
+    {
+        paidAcquisition: "Paid acquisition",
+        unitEconomics: "Unit economics",
+        viral: "Viral",
+        email: "Email",
+        sales: "Sales and partnerships",
+        growth: "Growth engines and cohorts",
+        experiment: "Experiment"
+    },
+    names:
+    {
+        clickThroughRate: "Click-through rate",
+        costPerClick: "Cost per click",
+        costPerThousandImpressions: "Cost per thousand impressions",
+        conversionRate: "Conversion rate",
+        costPerAcquisition: "Cost per acquisition",
+        returnOnAdSpend: "Return on ad spend",
+        customerAcquisitionCost: "Customer acquisition cost",
+        lifetimeValue: "Lifetime value",
+        ltvToCacRatio: "LTV:CAC ratio",
+        cacPaybackPeriod: "CAC payback period",
+        viralCoefficient: "Viral coefficient",
+        viralCycleTime: "Viral cycle time",
+        viralGrowthProjection: "Viral growth projection",
+        openRate: "Open rate",
+        clickRate: "Click rate",
+        unsubscribeRate: "Unsubscribe rate",
+        listGrowthRate: "List growth rate",
+        subscriberToCustomerRate: "Subscriber-to-customer conversion",
+        stageConversionRate: "Stage conversion",
+        winRate: "Win rate",
+        salesCycleLength: "Sales cycle length",
+        costPerLead: "Cost per lead",
+        affiliateCostPerSale: "Affiliate cost per sale",
+        stickyGrowthRate: "Sticky growth rate",
+        paidEngineMargin: "Paid engine margin",
+        activationRate: "Activation rate",
+        cohortRetention: "Cohort retention",
+        funnelStepConversion: "Funnel step conversion",
+        lift: "Lift vs baseline",
+        thresholdStatus: "Threshold check",
+        twoProportionSignificance: "Two-proportion significance test"
+    },
+    inputs:
+    {
+        acquisitionSpend: "Acquisition spend",
+        activatedUsers: "Activated users",
+        advancedDeals: "Deals advanced",
+        affiliateSales: "Affiliate sales",
+        baselineValue: "Baseline value",
+        churnRateBps: "Churn rate",
+        churnedCustomers: "Churned customers",
+        clicks: "Clicks",
+        closedDeals: "Deals closed",
+        cohortSize: "Cohort size",
+        commissionsPaid: "Commissions paid",
+        confidenceBps: "Confidence",
+        controlConversions: "Control conversions",
+        controlTrials: "Control trials",
+        conversions: "Conversions",
+        convertedSubscribers: "Subscribers who became customers",
+        currentUsers: "Current users",
+        customerAcquisitionCost: "Customer acquisition cost",
+        customersAtStart: "Customers at start",
+        delivered: "Emails delivered",
+        direction: "Direction",
+        enteredDeals: "Deals entered",
+        grossMarginBps: "Gross margin",
+        horizonDays: "Horizon (days)",
+        impressions: "Impressions",
+        invitedSignups: "Signups from invitations",
+        invitingUsers: "Inviting users",
+        leads: "Leads",
+        lifetimeValue: "Lifetime value",
+        listSizeAtStart: "List size at start",
+        lostDeals: "Deals lost",
+        lostSubscribers: "Subscribers lost",
+        newCustomers: "New customers",
+        newSubscribers: "New subscribers",
+        opens: "Unique opens",
+        previousStepCompletions: "Previous step completions",
+        retainedUsers: "Retained users",
+        revenue: "Revenue",
+        revenuePerCustomer: "Revenue per customer per period",
+        signups: "Signups",
+        significant: "Significant",
+        spend: "Spend",
+        stepCompletions: "Step completions",
+        subscribers: "Subscribers",
+        threshold: "Threshold",
+        totalCycleDays: "Total cycle days",
+        unsubscribes: "Unsubscribes",
+        value: "Value",
+        variantConversions: "Variant conversions",
+        variantTrials: "Variant trials",
+        variantValue: "Variant value",
+        viralCoefficientBps: "Viral coefficient",
+        viralCycleTimeDays: "Viral cycle time (days)",
+        wonDeals: "Deals won",
+        zScore: "z-score",
+        pValue: "p-value"
+    },
+    units:
+    {
+        number: "",
+        count: "",
+        money: "minor units (cents)",
+        rate: "basis points (250 = 2.50%)",
+        multiple: "× 10000 (32000 = 3.2×)",
+        days: "days",
+        statistic: "× 10000",
+        boolean: "",
+        enum: ""
+    },
+    options:
+    {
+        atLeast: "At least",
+        atMost: "At most",
+        pass: "Pass",
+        fail: "Fail",
+        inconclusive: "Inconclusive"
+    }
+} as const;
+
+export default calculators;

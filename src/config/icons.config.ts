@@ -12,6 +12,26 @@
  */
 
 import type { ComponentType } from 'react';
+import IconTarget from '@tabler/icons-react/dist/esm/icons/IconTarget.mjs';
+import IconChartLine from '@tabler/icons-react/dist/esm/icons/IconChartLine.mjs';
+import IconDatabase from '@tabler/icons-react/dist/esm/icons/IconDatabase.mjs';
+import IconPlug from '@tabler/icons-react/dist/esm/icons/IconPlug.mjs';
+import IconKeyGlyph from '@tabler/icons-react/dist/esm/icons/IconKey.mjs';
+import IconCalculator from '@tabler/icons-react/dist/esm/icons/IconCalculator.mjs';
+import IconBulb from '@tabler/icons-react/dist/esm/icons/IconBulb.mjs';
+import IconShare from '@tabler/icons-react/dist/esm/icons/IconShare.mjs';
+import IconNews from '@tabler/icons-react/dist/esm/icons/IconNews.mjs';
+import IconConfetti from '@tabler/icons-react/dist/esm/icons/IconConfetti.mjs';
+import IconArticle from '@tabler/icons-react/dist/esm/icons/IconArticle.mjs';
+import IconTool from '@tabler/icons-react/dist/esm/icons/IconTool.mjs';
+import IconRss from '@tabler/icons-react/dist/esm/icons/IconRss.mjs';
+import IconHeartHandshake from '@tabler/icons-react/dist/esm/icons/IconHeartHandshake.mjs';
+import IconBriefcase from '@tabler/icons-react/dist/esm/icons/IconBriefcase.mjs';
+import IconApps from '@tabler/icons-react/dist/esm/icons/IconApps.mjs';
+import IconBuildingPavilion from '@tabler/icons-react/dist/esm/icons/IconBuildingPavilion.mjs';
+import IconCalendarEvent from '@tabler/icons-react/dist/esm/icons/IconCalendarEvent.mjs';
+import IconMicrophone from '@tabler/icons-react/dist/esm/icons/IconMicrophone.mjs';
+import IconSpeakerphone from '@tabler/icons-react/dist/esm/icons/IconSpeakerphone.mjs';
 import IconBell from '@tabler/icons-react/dist/esm/icons/IconBell.mjs';
 import IconChevronRight from '@tabler/icons-react/dist/esm/icons/IconChevronRight.mjs';
 import IconChevronLeft from '@tabler/icons-react/dist/esm/icons/IconChevronLeft.mjs';
@@ -307,6 +327,26 @@ export const ICONS = {
     butter: { component: IconCheese, category: 'ingredients', label: 'icons.butter' },
     mountain: { component: IconMountain, category: 'ingredients', label: 'icons.mountain' },
     utensils: { component: IconBowlSpoon, category: 'production', label: 'icons.utensils' },
+    target: { component: IconTarget, category: 'interface', label: 'icons.target' },
+    chartLine: { component: IconChartLine, category: 'interface', label: 'icons.chartLine' },
+    database: { component: IconDatabase, category: 'interface', label: 'icons.database' },
+    plug: { component: IconPlug, category: 'interface', label: 'icons.plug' },
+    key: { component: IconKeyGlyph, category: 'interface', label: 'icons.key' },
+    calculator: { component: IconCalculator, category: 'interface', label: 'icons.calculator' },
+    bulb: { component: IconBulb, category: 'interface', label: 'icons.bulb' },
+    share: { component: IconShare, category: 'interface', label: 'icons.share' },
+    news: { component: IconNews, category: 'interface', label: 'icons.news' },
+    confetti: { component: IconConfetti, category: 'interface', label: 'icons.confetti' },
+    article: { component: IconArticle, category: 'interface', label: 'icons.article' },
+    tool: { component: IconTool, category: 'interface', label: 'icons.tool' },
+    rss: { component: IconRss, category: 'interface', label: 'icons.rss' },
+    handshake: { component: IconHeartHandshake, category: 'interface', label: 'icons.handshake' },
+    briefcase: { component: IconBriefcase, category: 'interface', label: 'icons.briefcase' },
+    apps: { component: IconApps, category: 'interface', label: 'icons.apps' },
+    buildingPavilion: { component: IconBuildingPavilion, category: 'interface', label: 'icons.buildingPavilion' },
+    calendarEvent: { component: IconCalendarEvent, category: 'interface', label: 'icons.calendarEvent' },
+    microphone: { component: IconMicrophone, category: 'interface', label: 'icons.microphone' },
+    speakerphone: { component: IconSpeakerphone, category: 'interface', label: 'icons.speakerphone' },
 } as const satisfies Record<string, IconDefinition>;
 
 export type IconKey = keyof typeof ICONS;

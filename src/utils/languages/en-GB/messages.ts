@@ -44,6 +44,20 @@ const messages = {
             oneOf: "Must be one of {{values}}",
             isJson: "Must be valid JSON."
         },
+        expression:
+        {
+            notString: "The expression must be text.",
+            tooLong: "The expression is too long.",
+            empty: "Enter an expression.",
+            unexpectedCharacter: "Unexpected character at position {{position}}.",
+            invalidNumber: "A number at position {{position}} is not written correctly.",
+            unexpectedToken: "Unexpected \"{{value}}\" at position {{position}}.",
+            unexpectedEnd: "The expression ends too early.",
+            unknownFunction: "\"{{value}}\" is not a function. Use min, max or abs.",
+            wrongArity: "{{value}} received the wrong number of arguments.",
+            tooDeep: "The expression is nested too deeply.",
+            unknownReference: "Unknown metric: {{value}}."
+        },
         number:
         {
             min: "Must be at least {{min}}.",

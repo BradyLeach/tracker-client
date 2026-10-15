@@ -23,6 +23,28 @@ const types = {
         return: "Return",
         other: "Other",
     },
+    channel:
+    {
+        viral_marketing: "Viral Marketing",
+        public_relations: "Public Relations",
+        unconventional_pr: "Unconventional PR",
+        search_engine_marketing: "Search Engine Marketing",
+        social_and_display_ads: "Social and Display Ads",
+        offline_ads: "Offline Ads",
+        search_engine_optimization: "Search Engine Optimization",
+        content_marketing: "Content Marketing",
+        email_marketing: "Email Marketing",
+        engineering_as_marketing: "Engineering as Marketing",
+        targeting_blogs: "Targeting Blogs",
+        business_development: "Business Development",
+        sales: "Sales",
+        affiliate_programs: "Affiliate Programs",
+        existing_platforms: "Existing Platforms",
+        trade_shows: "Trade Shows",
+        offline_events: "Offline Events",
+        speaking_engagements: "Speaking Engagements",
+        community_building: "Community Building",
+    },
     locationType:
     {
         warehouse: "Warehouse",

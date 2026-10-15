@@ -18,3 +18,4 @@ export type {
 export { calculatorService } from './services/calculator.service';
 export { useCalculators } from './hooks/useCalculators';
 export { useRunCalculator } from './hooks/useRunCalculator';
+export { formatScaledValue } from './utils/formatScaledValue';

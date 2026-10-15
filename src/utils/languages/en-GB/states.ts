@@ -10,6 +10,7 @@
  * must surface as a missing key, not fall back to the raw label.
  */
 const states = {
+    abandoned: "Abandoned",
     active: "Active",
     archived: "Archived",
     awaiting_delivery: "Awaiting Delivery",
@@ -17,7 +18,9 @@ const states = {
     cancelled: "Cancelled",
     closed: "Closed",
     closed_short: "Closed Short",
+    concluded: "Concluded",
     consumed: "Consumed",
+    draft: "Draft",
     evaluation: "Evaluation",
     expired: "Expired",
     in_review: "In Review",
@@ -34,6 +37,7 @@ const states = {
     reopened: "Reopened",
     retired: "Retired",
     returned: "Returned",
+    running: "Running",
     terminated: "Terminated",
     verified: "Verified",
 } as const;
