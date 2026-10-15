@@ -13,3 +13,5 @@ export { useCreateMetric } from './hooks/useCreateMetric';
 export { useUpdateMetric } from './hooks/useUpdateMetric';
 export { useDeleteMetric } from './hooks/useDeleteMetric';
 export { useMetricValues } from './hooks/useMetricValues';
+export { DimensionFilterEditor } from './components/DimensionFilterEditor';
+export type { DimensionFilterEditorProps } from './components/DimensionFilterEditor';

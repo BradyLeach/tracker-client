@@ -21,8 +21,10 @@ export {
     useCreateMetric,
     useUpdateMetric,
     useDeleteMetric,
-    useMetricValues
+    useMetricValues,
+    DimensionFilterEditor
 } from './metric';
+export type { DimensionFilterEditorProps } from './metric';
 
 // Formula
 export type {

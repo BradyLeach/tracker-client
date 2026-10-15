@@ -11,11 +11,13 @@ import { NavbarLayout } from '@/components/container/NavbarLayout';
 import { LocationPlayground } from '../playgrounds/location/Location.playground';
 import { AddressPlayground } from '../playgrounds/address/Address.playground';
 import { LocationAddressPlayground } from '../playgrounds/locationAddress/LocationAddress.playground';
+import { DimensionFilterEditorPlayground } from '../playgrounds/metric/DimensionFilterEditor.playground';
 
 const PAGES = [
     { label: 'Location', component: <LocationPlayground /> },
     { label: 'Address', component: <AddressPlayground /> },
     { label: 'LocationAddress', component: <LocationAddressPlayground /> },
+    { label: 'DimensionFilters', component: <DimensionFilterEditorPlayground /> },
 ];
 
 export function PageDomainDevTools()
