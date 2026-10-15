@@ -7,6 +7,7 @@ import {
     DateInput,
     SelectInput,
     AutocompleteInput,
+    TagsInput,
     SliderInput,
     NumberInput,
     RatingInput,
@@ -160,6 +161,23 @@ export function FieldGroupRenderer( { fields, loading, formScope }: FieldGroupRe
                                 placeholder={field.placeholder}
                                 options={field.options || []}
                                 freeSolo={field.freeSolo}
+                                error={isFieldError( fieldErr ) ? fieldErr : undefined}
+                                required={field.required}
+                                disabled={loading}
+                                formScope={formScope}
+                                hideLabel={field.hideLabel}
+                                {...field.props}
+                            />
+                        );
+
+                    case 'tags':
+                        return (
+                            <TagsInput
+                                key={field.name}
+                                name={field.name}
+                                control={control}
+                                label={field.label}
+                                placeholder={field.placeholder}
                                 error={isFieldError( fieldErr ) ? fieldErr : undefined}
                                 required={field.required}
                                 disabled={loading}

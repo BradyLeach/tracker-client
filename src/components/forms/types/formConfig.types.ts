@@ -58,6 +58,7 @@ export type FormFieldType =
     | 'date'
     | 'select'
     | 'autocomplete'
+    | 'tags'
     | 'checkbox'
     | 'slider'
     | 'rating'

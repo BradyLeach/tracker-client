@@ -10,3 +10,4 @@ export { Select, type SelectProps } from './Select';
 export { Slider, type SliderProps } from './Slider';
 export { DatePicker, type DatePickerProps } from './DatePicker';
 export { Autocomplete, type AutocompleteProps, type AutocompleteOption } from './Autocomplete';
+export { TagsInput, type TagsInputProps } from './TagsInput';

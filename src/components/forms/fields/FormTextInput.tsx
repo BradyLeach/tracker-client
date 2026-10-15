@@ -23,6 +23,10 @@ interface TextInputProps extends BaseFieldProps
     icon?: React.ReactNode;
     /** HTML autocomplete value. */
     autoComplete?: string;
+    /** Render as a multi-line text area — for prose such as a hypothesis or a learning. */
+    multiline?: boolean;
+    /** Minimum visible rows when multiline. */
+    minRows?: number;
 };
 
 /**
@@ -71,6 +75,8 @@ export function TextInput( {
     required,
     icon,
     autoComplete,
+    multiline = false,
+    minRows,
     fullWidth = true,
     type = 'text',
     formScope = 'shared',
@@ -103,6 +109,8 @@ export function TextInput( {
                         value={field.value ?? ''}
                         id={name}
                         type={type}
+                        multiline={multiline}
+                        minRows={minRows}
                         autoComplete={autoComplete || name}
                         variant="outlined"
                         fullWidth={fullWidth}

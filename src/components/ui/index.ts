@@ -128,6 +128,8 @@ export
     Autocomplete,
     type AutocompleteProps,
     type AutocompleteOption,
+    TagsInput,
+    type TagsInputProps,
 } from './forms';
 
 // SVG Canvas
@@ -135,6 +137,7 @@ export { SvgCanvas, SvgLayer, type SvgCanvasProps, type SvgLayerProps } from './
 
 // Charts
 export { SparkLine, type SparkLineProps } from './charts/SparkLine';
+export { LineChart, ChartsReferenceLine, type LineChartProps, type ChartsReferenceLineProps } from './charts/LineChart';
 
 // Icons
 export { IconRenderer } from './icons/Icon';

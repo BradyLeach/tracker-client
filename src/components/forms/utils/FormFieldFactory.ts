@@ -147,7 +147,9 @@ class FormFieldFactory
             case 'datetime':
             case 'dayjs': return 'date';
             case 'number':
-            case 'integer': return 'number';
+            case 'integer':
+            case 'bigint': return 'number';
+            case 'array': return 'tags';
             default: return 'text';
         }
     }

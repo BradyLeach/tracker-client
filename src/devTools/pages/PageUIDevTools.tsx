@@ -10,6 +10,8 @@ import { EmptyStatePlayground } from '../playgrounds/ui/EmptyState.playground';
 import { RealtimeTracePlayground } from '../playgrounds/ui/RealtimeTrace.playground';
 import { PageSvgCanvasPlayground } from '../playgrounds/svgCanvas/SvgCanvas.playground';
 import { StateGraphViewerPlayground } from '../playgrounds/workflow/StateGraphViewer.playground';
+import { TagsInputPlayground } from '../playgrounds/ui/TagsInput.playground';
+import { LineChartPlayground } from '../playgrounds/ui/LineChart.playground';
 
 const PAGES = [
     { label: 'Dialogs', component: <PageDialogPlayground /> },
@@ -21,6 +23,8 @@ const PAGES = [
     { label: 'Realtime trace', component: <RealtimeTracePlayground /> },
     { label: 'SvgCanvas', component: <PageSvgCanvasPlayground /> },
     { label: 'StateGraphViewer', component: <StateGraphViewerPlayground /> },
+    { label: 'TagsInput', component: <TagsInputPlayground /> },
+    { label: 'LineChart', component: <LineChartPlayground /> },
 ];
 
 export function PageUIDevTools()

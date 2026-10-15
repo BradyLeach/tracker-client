@@ -4,6 +4,7 @@ export { DateInput } from './FormDateInput';
 export { TextInput } from './FormTextInput';
 export { SelectInput } from './FormSelectInput';
 export { AutocompleteInput } from './FormAutocompleteInput';
+export { TagsInput } from './FormTagsInput';
 export { SliderInput } from './FormSliderInput';
 export { NumberInput } from './FormNumberInput';
 export { RatingInput } from './FormRatingInput';
