@@ -341,6 +341,11 @@ const pages =
             addButton: "New Source",
             enterButton: "Enter measurements",
             measurements: "Recent measurements",
+            deleteConfirm:
+            {
+                title: "Delete source?",
+                body: "{{name}} and every measurement it holds will be permanently deleted. This cannot be undone."
+            },
             emptyState:
             {
                 headline: "No sources yet",

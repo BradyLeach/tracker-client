@@ -392,6 +392,7 @@ const forms =
         {
             title: "Enter Measurements",
             submitButton: "Save",
+            enterAnother: "Enter another",
             fields:
             {
                 name: "Measurement",

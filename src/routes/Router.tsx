@@ -18,6 +18,7 @@ const PageExperiments = lazy( () => import( '@/domains/experiment' ).then( modul
 const PageMetrics = lazy( () => import( '@/domains/metric' ).then( module => ( { default: module.PageMetrics } ) ) );
 const PageCalculators = lazy( () => import( '@/domains/calculator' ).then( module => ( { default: module.PageCalculators } ) ) );
 const PageConnections = lazy( () => import( '@/domains/connector' ).then( module => ( { default: module.PageConnections } ) ) );
+const PageSources = lazy( () => import( '@/domains/measurement' ).then( module => ( { default: module.PageSources } ) ) );
 const PageExperiment = lazy( () => import( '@/domains/experiment' ).then( module => ( { default: module.PageExperiment } ) ) );
 
 // Get the runtime environment for the config helper
@@ -80,6 +81,7 @@ export const router = createBrowserRouter( [
                     { path: "/metrics", element: <PageMetrics /> },
                     { path: "/calculators", element: <PageCalculators /> },
                     { path: "/connections", element: <PageConnections /> },
+                    { path: "/sources", element: <PageSources /> },
                 ]
             },
 
