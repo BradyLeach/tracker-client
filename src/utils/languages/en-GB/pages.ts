@@ -357,6 +357,25 @@ const pages =
             runs: "Runs",
             testOk: "Connection works.",
             testFailed: "Connection failed: {{message}}",
+            searchPlaceholder: "Search connections",
+            noRuns: "No runs yet.",
+            runKinds:
+            {
+                backfill: "Backfill",
+                scheduled: "Scheduled",
+                manual: "Manual"
+            },
+            runStatuses:
+            {
+                running: "Running",
+                succeeded: "Succeeded",
+                failed: "Failed"
+            },
+            deleteConfirm:
+            {
+                title: "Delete connection?",
+                body: "{{name}} will be permanently deleted and stop pulling. This cannot be undone."
+            },
             emptyState:
             {
                 headline: "No connections yet",

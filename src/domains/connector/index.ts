@@ -36,3 +36,6 @@ export {
     useConnectorRun,
     useConnectorRunsByConnection
 } from './connectorRun';
+
+// Pages
+export { PageConnections } from './pages/PageConnections';
