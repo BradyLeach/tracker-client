@@ -232,6 +232,11 @@ const pages =
                 abandon: "Abandon",
                 abandonConfirm: "Abandon this experiment? It stops without a conclusion and cannot be restarted."
             },
+            deleteConfirm:
+            {
+                title: "Delete experiment?",
+                body: "{{title}} and its variants, measures and learnings will be permanently deleted. This cannot be undone."
+            },
             variants:
             {
                 addButton: "Add variant",

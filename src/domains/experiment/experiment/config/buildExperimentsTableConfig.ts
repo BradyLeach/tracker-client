@@ -14,9 +14,10 @@
  * status and end date fill its body. Decision carries no slot — it belongs to the
  * table, where an empty cell for every unconcluded experiment costs nothing.
  *
- * Status and Decision carry no renderer here: the state resolves through the state
- * registry and the decision translates, so the orchestrator supplies both and this
- * file stays free of JSX and registry lookups.
+ * Status is a 'state' column, drawn by the table's own state renderer. Decision
+ * carries no renderer here: it translates, so the orchestrator supplies it along
+ * with the search and sort values for both, and this file stays free of JSX and
+ * registry lookups.
  *
  * All labels are i18n keys — translated at render time by DataTable.
  * Config is built once and cached for the application lifetime.
@@ -58,11 +59,11 @@ export function buildExperimentsTableConfig(): TableConfig<Experiment>
             }
             : undefined,
 
-        // Resolved through the state registry — see the orchestrator.
+        // Drawn by the table's state renderer; searched and sorted through the orchestrator.
         {
             key: 'currentStateGraphStateId',
             label: 'tables.experiments.columns.status',
-            type: 'text',
+            type: 'state',
             sortable: true,
             card: 'body',
         },

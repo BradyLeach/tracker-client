@@ -29,8 +29,11 @@ export {
     useStartExperiment,
     useAbandonExperiment,
     useConcludeExperiment,
-    useExperimentResults
+    useExperimentResults,
+    ExperimentDialog,
+    DeleteExperimentDialog
 } from './experiment';
+export type { ExperimentDialogProps, DeleteExperimentDialogProps } from './experiment';
 
 // ExperimentVariant
 export type {
@@ -75,3 +78,6 @@ export {
     useDeleteLearning,
     useLearningsByExperiment
 } from './learning';
+
+// Pages
+export { PageExperiments } from './pages/PageExperiments';
