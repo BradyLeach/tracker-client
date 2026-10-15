@@ -19,3 +19,6 @@ export {
     useDeleteIngestKey,
     useRevokeIngestKey
 } from './ingestKey';
+
+// Pages
+export { PageIngestKeys } from './pages/PageIngestKeys';

@@ -424,6 +424,7 @@ const forms =
         ingestKey:
         {
             title: "New Ingest Key",
+            editTitle: "Edit Ingest Key",
             submitButton: "Create Key",
             keyTitle: "Your new key",
             fields:

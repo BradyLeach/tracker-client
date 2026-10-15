@@ -396,6 +396,15 @@ const pages =
             revoked: "Revoked",
             revokeConfirm: "Revoke this key? Anything using it stops sending events at once.",
             keyShownOnce: "Copy this key now. It is shown once and cannot be shown again.",
+            copyButton: "Copy",
+            copied: "Copied",
+            doneButton: "Done",
+            searchPlaceholder: "Search keys",
+            deleteConfirm:
+            {
+                title: "Delete key?",
+                body: "{{name}} will be permanently deleted. Anything using it stops sending events at once."
+            },
             emptyState:
             {
                 headline: "No ingest keys yet",
