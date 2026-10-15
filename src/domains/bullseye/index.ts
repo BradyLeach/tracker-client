@@ -18,3 +18,6 @@ export {
     useUpdateChannelIdea,
     useDeleteChannelIdea
 } from './channelIdea';
+
+// Pages
+export { PageBullseye } from './pages/PageBullseye';

@@ -424,7 +424,12 @@ const pages =
                 inner: "Inner ring — focus"
             },
             moveTo: "Move to {{ring}}",
-            emptyRing: "No ideas in this ring."
+            emptyRing: "No ideas in this ring.",
+            deleteConfirm:
+            {
+                title: "Delete idea?",
+                body: "{{title}} will be permanently deleted. This cannot be undone."
+            }
         },
         calculators:
         {
