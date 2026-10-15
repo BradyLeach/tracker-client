@@ -38,6 +38,7 @@ export interface SystemType
  */
 export const SYSTEM_TYPE_MODELS = [
     'addressType',
+    'channel',
     'locationType',
     'partnershipType'
 ] as const;
