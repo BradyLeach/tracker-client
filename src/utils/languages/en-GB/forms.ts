@@ -314,6 +314,12 @@ const forms =
                 aggregationPlaceholder: "Sum, count or unique",
                 uniqueDimensionKey: "Count distinct values of",
                 uniqueDimensionKeyPlaceholder: "Select a dimension",
+                keyHelp: "The name formulas use for this metric. Fixed once created.",
+                measurementNameHelp: "Which measurement from the source this metric reads, such as signup or pageviews.",
+                aggregationHelp: "Count: how many measurements. Sum: their values added up, for totals such as page " +
+                    "views. Unique: distinct values.",
+                uniqueDimensionKeyHelp: "Unique only — the dimension whose distinct values are counted.",
+                windowDaysHelp: "How far back the metric looks on its own. Experiments use their own window.",
                 windowDays: "Rolling window (days)",
                 windowDaysPlaceholder: "Blank for all time"
             },
@@ -378,7 +384,18 @@ const forms =
                 allowedMeasurementNames: "Allowed measurement names",
                 allowedMeasurementNamesPlaceholder: "Type a name and press Enter",
                 allowedDimensionKeys: "Allowed dimension keys",
-                allowedDimensionKeysPlaceholder: "Type a key and press Enter"
+                allowedDimensionKeysPlaceholder: "Type a key and press Enter",
+                keyHelp: "A fixed name: 'manual' for figures you enter by hand, 'push' for events your site or " +
+                    "server sends. Connectors create their own sources — connect a tool on the Connections " +
+                    "page instead.",
+                labelHelp: "Optional display name.",
+                sourceTypeHelp: "Events: each entry is one thing that happened, such as a signup. Buckets: each entry " +
+                    "is a total for an hour or a day. 'manual' and 'push' must be events.",
+                bucketSizeHelp: "Buckets only — whether each total covers an hour or a day.",
+                allowedMeasurementNamesHelp: "What this source may record, such as signup or heart. Anything else sent to it is " +
+                    "refused.",
+                allowedDimensionKeysHelp: "Extra labels a measurement may carry, such as post or campaign. Metrics and " +
+                    "attribution filter on these."
             },
             options:
             {
@@ -418,7 +435,9 @@ const forms =
                 labelPlaceholder: "Optional",
                 isActive: "Pull on a schedule",
                 pullIntervalMinutes: "Pull every (minutes)",
-                pullIntervalMinutesPlaceholder: "At least 15"
+                pullIntervalMinutesPlaceholder: "At least 15",
+                labelHelp: "Optional display name for this connection.",
+                pullIntervalMinutesHelp: "How often the scheduler pulls new data, when scheduled."
             },
             settingsTitle: "Settings",
             credentialsTitle: "Credentials",
@@ -432,7 +451,14 @@ const forms =
                 siteHostPlaceholder: "e.g. planmaketrace.com",
                 excludePaths: "Excluded paths",
                 excludePathsPlaceholder: "Type a path prefix, e.g. /admin, and press Enter",
-                dailyVisits: "Daily visits"
+                dailyVisits: "Daily visits",
+                apiKeyHelp: "Kit → Settings → Developer → API keys (v4). Stored encrypted and never shown again.",
+                apiTokenHelp: "Cloudflare → My Profile → API Tokens, with Account › Account Analytics › Read. Stored " +
+                    "encrypted and never shown again.",
+                accountIdHelp: "On your Cloudflare account home page, and in the dashboard URL after dash.cloudflare.com/.",
+                siteHostHelp: "Only page views on this host count; preview deployments are left out.",
+                excludePathsHelp: "Paths that are not site traffic, such as your admin dashboard.",
+                dailyVisitsHelp: "Test connector only: the visits it reports each day."
             }
         },
         ingestKey:

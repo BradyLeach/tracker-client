@@ -47,6 +47,7 @@ function declaredField(
         virtual: true,
         defaultValue,
         label: { text: `forms.connection.connectorFields.${field.key}` },
+        help: `forms.connection.connectorFields.${field.key}Help`,
         placeholder: i18n.exists( placeholderKey ) ? placeholderKey : undefined,
     };
 }

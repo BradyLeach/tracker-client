@@ -22,4 +22,6 @@ export interface BaseFieldProps
     fullWidth?: boolean;
     /** Hide the label (only show input). Useful for compact layouts. Defaults to false. */
     hideLabel?: boolean;
+    /** Optional i18n key for help text under the field; if omitted, falls back to `forms.{formScope}.fields.{name}Help`. */
+    help?: string;
 }

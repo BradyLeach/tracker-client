@@ -1,6 +1,7 @@
 import { Controller } from 'react-hook-form';
 import { FormLabel, TagsInput as TagsField } from '@/components/ui';
 import { useLocalisedPlaceholder } from '@/components/forms/hooks/useLocalisedPlaceholder';
+import { useLocalisedHelp } from '@/components/forms/hooks/useLocalisedHelp';
 import { useLocalisedLabel } from '@/components/forms/hooks/useLocalisedLabel';
 import { SmartLabel } from './SmartLabel';
 
@@ -40,9 +41,11 @@ export function TagsInput( {
     disabled,
     formScope = 'shared',
     hideLabel = false,
+    help,
 }: TagsInputProps )
 {
     const fieldPlaceholder = useLocalisedPlaceholder( { name, formScope, placeholder } );
+    const fieldHelp = useLocalisedHelp( { name, formScope, help } );
     const fieldLabel = useLocalisedLabel( { name, formScope, label } );
 
     return (
@@ -66,7 +69,7 @@ export function TagsInput( {
                         disabled={disabled}
                         placeholder={fieldPlaceholder}
                         error={!!error}
-                        helperText={error?.message}
+                        helperText={error?.message ?? ( fieldHelp || undefined )}
                     />
                 )}
             />

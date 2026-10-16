@@ -79,6 +79,8 @@ export interface FormFieldConfig
     label?: FormLabelConfig;
     /** Optional: field placeholder override (defaults to i18n if omitted) */
     placeholder?: string;
+    /** Optional: i18n key for help text under the field (defaults to `forms.{formScope}.fields.{name}Help`) */
+    help?: string;
     /** Whether the field is required */
     required?: boolean;
     /** Optional: default value for the field */

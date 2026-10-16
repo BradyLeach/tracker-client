@@ -3,6 +3,7 @@ import { InputAdornment, TextField, FormLabel } from '@/components/ui';
 import type { IconKey } from '@/components/ui';
 import { IconRenderer } from '@/components/ui/icons/Icon';
 import { useLocalisedPlaceholder } from '@/components/forms/hooks/useLocalisedPlaceholder';
+import { useLocalisedHelp } from '@/components/forms/hooks/useLocalisedHelp';
 import { useLocalisedLabel } from '@/components/forms/hooks/useLocalisedLabel';
 import { SmartLabel } from './SmartLabel';
 
@@ -81,10 +82,12 @@ export function TextInput( {
     type = 'text',
     formScope = 'shared',
     hideLabel = false,
+    help,
 }: TextInputProps )
 {
     // Get localised placeholder
     const fieldPlaceholder = useLocalisedPlaceholder( { name, formScope, placeholder } );
+    const fieldHelp = useLocalisedHelp( { name, formScope, help } );
 
     // Get localised label data (translated strings)
     const fieldLabel = useLocalisedLabel( { name, formScope, label } );
@@ -116,7 +119,7 @@ export function TextInput( {
                         fullWidth={fullWidth}
                         placeholder={fieldPlaceholder}
                         error={!!error}
-                        helperText={error?.message}
+                        helperText={error?.message ?? ( fieldHelp || undefined )}
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">

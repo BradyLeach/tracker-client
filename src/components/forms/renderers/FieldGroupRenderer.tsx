@@ -68,6 +68,7 @@ export function FieldGroupRenderer( { fields, loading, formScope }: FieldGroupRe
                         return (
                             <TextInput
                                 key={field.name}
+                                help={field.help}
                                 name={field.name}
                                 control={control}
                                 label={field.label}
@@ -103,6 +104,7 @@ export function FieldGroupRenderer( { fields, loading, formScope }: FieldGroupRe
                         return (
                             <NumberInput
                                 key={field.name}
+                                help={field.help}
                                 name={field.name}
                                 control={control}
                                 label={field.label}
@@ -137,6 +139,7 @@ export function FieldGroupRenderer( { fields, loading, formScope }: FieldGroupRe
                         return (
                             <SelectInput
                                 key={field.name}
+                                help={field.help}
                                 name={field.name}
                                 control={control}
                                 label={field.label}
@@ -174,6 +177,7 @@ export function FieldGroupRenderer( { fields, loading, formScope }: FieldGroupRe
                         return (
                             <TagsInput
                                 key={field.name}
+                                help={field.help}
                                 name={field.name}
                                 control={control}
                                 label={field.label}

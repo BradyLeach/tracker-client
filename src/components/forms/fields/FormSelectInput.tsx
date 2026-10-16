@@ -1,6 +1,7 @@
 import { Controller } from 'react-hook-form';
 import { MenuItem, FormHelperText, FormLabel, Select } from '@/components/ui';
 import { useLocalisedPlaceholder } from '@/components/forms/hooks/useLocalisedPlaceholder';
+import { useLocalisedHelp } from '@/components/forms/hooks/useLocalisedHelp';
 import { useLocalisedLabel } from '@/components/forms/hooks/useLocalisedLabel';
 import { SmartLabel } from './SmartLabel';
 
@@ -53,10 +54,12 @@ export function SelectInput( {
     fullWidth = true,
     formScope = 'shared',
     hideLabel = false,
+    help,
 }: SelectInputProps )
 {
     // Get localised placeholder
     const fieldPlaceholder = useLocalisedPlaceholder( { name, formScope, placeholder } );
+    const fieldHelp = useLocalisedHelp( { name, formScope, help } );
 
     // Get localised label data (translated strings)
     const fieldLabel = useLocalisedLabel( { name, formScope, label } );
@@ -89,11 +92,13 @@ export function SelectInput( {
                     </Select>
                 )}
             />
-            {error && (
-                <FormHelperText error>
-                    {error.message}
-                </FormHelperText>
-            )}
+            {error
+                ? (
+                    <FormHelperText error>
+                        {error.message}
+                    </FormHelperText>
+                )
+                : fieldHelp && <FormHelperText>{fieldHelp}</FormHelperText>}
         </>
     );
 }
