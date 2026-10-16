@@ -5,14 +5,15 @@
  * create. Creating a connection backfills the connector's history and, when scheduled,
  * keeps pulling from there.
  *
- * Connector settings are sent as the connector's own brief defines them; a connector with
- * none needs nothing here. The server refuses a connector whose credentials cannot yet be
- * stored, and its error key shows in the form's feedback slot.
+ * The connector is chosen above the form on create, and the form is rebuilt for it: its
+ * settings and credentials are the fields its declaration lists. Credentials are never read
+ * back, so editing sends them only when every one is entered again; blank keeps the stored
+ * ones. The server's error key shows in the form's feedback slot.
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Dialog } from '@/components/ui';
+import { Button, Dialog, MenuItem, Select, Typography } from '@/components/ui';
 import { FormScaffold } from '@/components/forms/scaffold/FormScaffold';
 import { BaseFormRenderer } from '@/components/forms/renderers/BaseFormRenderer';
 import { formatApiError } from '@/core/utils';
@@ -20,7 +21,7 @@ import { useConnectorCatalog } from '../hooks/useConnectorCatalog';
 import { useCreateConnection } from '../hooks/useCreateConnection';
 import { useUpdateConnection } from '../hooks/useUpdateConnection';
 import { buildConnectionFormConfig } from '../config/buildConnectionFormConfig';
-import type { Connection } from '../types/connection.types';
+import type { Connection, ConnectorField } from '../types/connection.types';
 
 const FORM_ID = 'connection-form';
 
@@ -34,6 +35,28 @@ export interface ConnectionDialogProps
     onCreated?: ( connectionId: string ) => void;
 }
 
+/** A blank entry is not a value: '' from a text field, NaN or '' from a number, [] from a list. */
+function isBlank( value: unknown ): boolean
+{
+    return value === undefined || value === null || value === '' ||
+        ( typeof value === 'number' && Number.isNaN( value ) ) ||
+        ( Array.isArray( value ) && value.length === 0 );
+}
+
+/** The declared fields' entered values, numbers as numbers, blanks left out. */
+function enteredValues( fields: ConnectorField[], entered: unknown ): Record<string, unknown>
+{
+    const values = ( entered ?? {} ) as Record<string, unknown>;
+
+    return Object.fromEntries( fields
+        .map( field =>
+        {
+            const value = values[field.key];
+            return [field.key, field.type === 'number' && !isBlank( value ) ? Number( value ) : value] as const;
+        } )
+        .filter( ( [, value] ) => !isBlank( value ) ) );
+}
+
 export function ConnectionDialog( { open, onClose, connection, onCreated }: ConnectionDialogProps )
 {
     const { t } = useTranslation();
@@ -45,17 +68,46 @@ export function ConnectionDialog( { open, onClose, connection, onCreated }: Conn
 
     const { data: catalog = [] } = useConnectorCatalog();
 
-    const [formKey, setFormKey] = useState( 0 );
-    useEffect( () => { if( open ) setFormKey( key => key + 1 ); }, [open] );
+    const [connectorName, setConnectorName] = useState( '' );
 
-    const config = buildConnectionFormConfig( catalog, connection ?? undefined );
+    /** Remounts the renderer and re-seeds the choice, so a reopened dialog starts from the record. */
+    const [formKey, setFormKey] = useState( 0 );
+    useEffect( () =>
+    {
+        if( !open ) return;
+        setFormKey( key => key + 1 );
+        setConnectorName( connection?.connectorName ?? '' );
+    }, [open, connection] );
+
+    const connector = catalog.find( descriptor => descriptor.name === connectorName );
+
+    const config = useMemo(
+        () => connector ? buildConnectionFormConfig( connector, connection ?? undefined ) : undefined,
+        [connector, connection],
+    );
+
+    // A different connector is a different set of settings and credentials.
+    const chooseConnector = ( next: string ) =>
+    {
+        setConnectorName( next );
+        setFormKey( key => key + 1 );
+    };
 
     const handleSubmit = async ( data: Record<string, unknown> ) =>
     {
+        if( !connector ) return;
+
+        const { settingFields, credentialFields } = connector.declaration;
+        const credentials = enteredValues( credentialFields, data['credentials'] );
+        const hasAllCredentials = credentialFields.every( field => field.optional || field.key in credentials );
+
         const values: Record<string, unknown> = {
             label: typeof data['label'] === 'string' && data['label'].trim() ? data['label'].trim() : null,
             isActive: data['isActive'] === true,
             pullIntervalMinutes: Number( data['pullIntervalMinutes'] ),
+            settings: enteredValues( settingFields, data['settings'] ),
+            // Credentials replace the stored ones whole, so a partial entry is not sent.
+            ...( credentialFields.length && hasAllCredentials ? { credentials } : {} ),
         };
 
         if( isEdit )
@@ -64,9 +116,7 @@ export function ConnectionDialog( { open, onClose, connection, onCreated }: Conn
         }
         else
         {
-            const created = await createMutation.mutateAsync( {
-                ...values, connectorName: data['connectorName'], settings: {},
-            } as Partial<Connection> );
+            const created = await createMutation.mutateAsync( { ...values, connectorName } as Partial<Connection> );
             onCreated?.( created.id );
         }
 
@@ -92,7 +142,7 @@ export function ConnectionDialog( { open, onClose, connection, onCreated }: Conn
                     <Button onClick={handleClose} disabled={mutation.isPending}>
                         {t( 'shared.buttons.cancel' )}
                     </Button>
-                    <Button variant="contained" form={FORM_ID} type="submit" disabled={mutation.isPending}>
+                    <Button variant="contained" form={FORM_ID} type="submit" disabled={mutation.isPending || !connector}>
                         {mutation.isPending
                             ? t( 'shared.interactions.saving' )
                             : t( isEdit ? 'shared.buttons.save' : 'forms.connection.submitButton' )}
@@ -102,16 +152,36 @@ export function ConnectionDialog( { open, onClose, connection, onCreated }: Conn
         >
             <FormScaffold>
                 <FormScaffold.Feedback message={mutation.error ? formatApiError( t, mutation.error ) : undefined} />
-                <FormScaffold.Body>
-                    <BaseFormRenderer
-                        key={formKey}
-                        config={config}
-                        onSubmit={handleSubmit}
-                        loading={mutation.isPending}
-                        formId={FORM_ID}
-                        formScope="connection"
-                    />
-                </FormScaffold.Body>
+                {!isEdit && (
+                    <FormScaffold.Message>
+                        <Typography variant="subtitle2" gutterBottom>{t( 'forms.connection.fields.connectorName' )}</Typography>
+                        <Select
+                            size="small"
+                            fullWidth
+                            displayEmpty
+                            value={connectorName}
+                            disabled={mutation.isPending}
+                            onChange={event => chooseConnector( String( event.target.value ) )}
+                        >
+                            <MenuItem value="" disabled>{t( 'forms.connection.fields.connectorNamePlaceholder' )}</MenuItem>
+                            {catalog.map( descriptor => (
+                                <MenuItem key={descriptor.name} value={descriptor.name}>{descriptor.name}</MenuItem>
+                            ) )}
+                        </Select>
+                    </FormScaffold.Message>
+                )}
+                {config && (
+                    <FormScaffold.Body>
+                        <BaseFormRenderer
+                            key={formKey}
+                            config={config}
+                            onSubmit={handleSubmit}
+                            loading={mutation.isPending}
+                            formId={FORM_ID}
+                            formScope="connection"
+                        />
+                    </FormScaffold.Body>
+                )}
             </FormScaffold>
         </Dialog>
     );

@@ -419,6 +419,20 @@ const forms =
                 isActive: "Pull on a schedule",
                 pullIntervalMinutes: "Pull every (minutes)",
                 pullIntervalMinutesPlaceholder: "At least 15"
+            },
+            settingsTitle: "Settings",
+            credentialsTitle: "Credentials",
+            credentialsKeep: "Leave blank to keep the stored credentials.",
+            connectorFields:
+            {
+                apiKey: "API key",
+                apiToken: "API token",
+                accountId: "Account ID",
+                siteHost: "Site host",
+                siteHostPlaceholder: "e.g. planmaketrace.com",
+                excludePaths: "Excluded paths",
+                excludePathsPlaceholder: "Type a path prefix, e.g. /admin, and press Enter",
+                dailyVisits: "Daily visits"
             }
         },
         ingestKey:

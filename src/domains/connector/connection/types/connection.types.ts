@@ -40,6 +40,19 @@ export interface ConnectorDeclaration
     allowedDimensionKeys: string[];
     maxHistoryDays: number;
     requiresCredentials: boolean;
+    /** Non-secret settings a connection to this connector holds. */
+    settingFields: ConnectorField[];
+    /** Secrets a connection to this connector holds, stored encrypted and never read back. */
+    credentialFields: ConnectorField[];
+}
+
+/** One setting or credential a connector declares; the connection form is built from these. */
+export interface ConnectorField
+{
+    key: string;
+    /** 'list' is a list of strings. */
+    type: 'text' | 'number' | 'list';
+    optional?: boolean;
 }
 
 export interface ConnectorDescriptor
